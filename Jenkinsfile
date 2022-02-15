@@ -4,7 +4,8 @@ pipeline {
 
         stage ("Code pull"){
             steps{
-                checkout scm
+                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url:'https://github.com/saravananbtechit2020/jenkins-python-test.git']]])
+
             }
         }
 
