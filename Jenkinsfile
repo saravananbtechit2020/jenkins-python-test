@@ -109,7 +109,7 @@ pipeline {
 
     post {
         always {
-            bat 'conda remove --yes -n ${BUILD_TAG} --all'
+            echo "test new"
         }
         failure {
             emailext (
