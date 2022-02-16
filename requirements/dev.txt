@@ -1,5 +1,3 @@
--r prod.txt
-
 # Static code metrics
 # pyflakes==1.6.0
 # Flake8==3.5.0
