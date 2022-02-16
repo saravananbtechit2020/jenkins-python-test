@@ -32,17 +32,9 @@ pipeline {
             }
             post{
                 always{
-                    step([$class: 'CoberturaPublisher',
-                                   autoUpdateHealth: false,
-                                   autoUpdateStability: false,
-                                   coberturaReportFile: 'reports/coverage.xml',
-                                   failNoReports: false,
-                                   failUnhealthy: false,
-                                   failUnstable: false,
-                                   maxNumberOfBuilds: 10,
-                                   onlyStable: false,
-                                   sourceEncoding: 'ASCII',
-                                   zoomCoverageChart: false])
+                    steps{
+                    echo "always loop"
+                    }
                 }
             }
         }
@@ -74,7 +66,6 @@ pipeline {
                     cucumber (buildStatus: 'SUCCESS',
                     fileIncludePattern: '**/*.json',
                     jsonReportDirectory: './reports/',
-                    parallelTesting: true,
                     sortingMethod: 'ALPHABETICAL')
                 }
             }
