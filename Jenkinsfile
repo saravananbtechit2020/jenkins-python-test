@@ -32,9 +32,9 @@ pipeline {
             }
             post{
                 always{
-                    steps{
+                    
                     echo "always loop"
-                    }
+                    
                 }
             }
         }
