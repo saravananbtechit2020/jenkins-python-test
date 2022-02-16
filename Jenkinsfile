@@ -12,8 +12,7 @@ pipeline {
         stage('Build environment') {
             steps {
                 echo "Building virtualenv"
-                bat  ''' conda create --yes -n ${BUILD_TAG} python
-                        source activate ${BUILD_TAG}
+                bat  '''                         
                         pip install -r requirements/dev.txt
                     '''
             }
@@ -23,12 +22,11 @@ pipeline {
             steps {
                                
                 echo "Test coverage"
-                bat  ''' source activate ${BUILD_TAG}
-                        coverage run irisvmpy/iris.py 1 1 2 3
+                bat  ''' 
                         python -m coverage xml -o reports/coverage.xml
                     '''
                 echo "Style check"
-                bat  ''' source activate ${BUILD_TAG}
+                bat  ''' 
                         pylint irisvmpy || true
                     '''
             }
@@ -53,7 +51,7 @@ pipeline {
 
         stage('Unit tests') {
             steps {
-                bat  ''' source activate ${BUILD_TAG}
+                bat  ''' 
                         python -m pytest --verbose --junit-xml reports/unit_tests.xml
                     '''
             }
@@ -67,7 +65,7 @@ pipeline {
 
         stage('Acceptance tests') {
             steps {
-                bat  ''' source activate ${BUILD_TAG}
+                bat  ''' 
                         behave -f=formatters.cucumber_json:PrettyCucumberJSONFormatter -o ./reports/acceptance.json || true
                     '''
             }
@@ -89,7 +87,7 @@ pipeline {
                 }
             }
             steps {
-                bat  ''' source activate ${BUILD_TAG}
+                bat  ''' 
                         python setup.py bdist_wheel
                     '''
             }
